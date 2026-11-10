@@ -56,9 +56,14 @@ img.emoji{height:1em;width:1em;vertical-align:-.12em;margin:0 .04em}
 .nd .b{position:relative;width:34px;height:42px;border-radius:50% 50% 50% 50%/38% 38% 62% 62%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.75) 0 10%,transparent 11%),var(--c);transition:transform .2s,box-shadow .2s}
 .nd .b::before{content:"";position:absolute;left:50%;top:-9px;width:12px;height:11px;margin-left:-6px;border-radius:2px;background:linear-gradient(#e9c76a,#a8751f)}
 .nd:hover .b{transform:scale(1.15)}.nd.on .b,.nd.on:hover .b{transform:scale(1.3);box-shadow:0 0 16px 5px var(--c)}.nd.on{color:var(--r)}
-#stg .c{animation:pop .3s}@keyframes pop{from{opacity:0;transform:translateY(8px)}}
-@media(prefers-reduced-motion:reduce){#stg .c{animation:none}}
+#stg .c,#pst .c,#scn .c,#sud .c{animation:pop .3s}@keyframes pop{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){#stg .c,#pst .c,#scn .c,#sud .c{animation:none}}
 @media(max-width:480px){.nd{font-size:.8rem}.nd .b{width:28px;height:36px}}
+.tiles{display:grid;gap:12px;margin:0 0 22px}.t3{grid-template-columns:repeat(3,1fr)}.t4{grid-template-columns:repeat(4,1fr)}
+.tile{display:flex;flex-direction:column;align-items:center;gap:4px;border:3px solid transparent;border-radius:20px;background:var(--p);padding:10px 6px;font:inherit;font-size:.95rem;font-weight:600;color:var(--n);line-height:1.2;box-shadow:0 3px 6px rgba(22,48,79,.2);transition:transform .15s}
+.tile span{font-size:2.4rem;line-height:1.1}.tile:hover{transform:translateY(-3px)}
+.tile.on{border-color:var(--y);background:#fff1c4;transform:scale(1.05)}.tp{font-weight:600;font-size:1.15rem;color:var(--n);margin:0 0 8px}
+@media(max-width:480px){.t4{grid-template-columns:repeat(2,1fr)}.tile{font-size:.8rem}}
 footer{padding:46px 0 16px;text-align:center;font-size:2.2rem;background:radial-gradient(ellipse 70% 100% at 30% 100%,#fff 60%,transparent 61%),radial-gradient(ellipse 60% 100% at 80% 100%,#f2f8fd 60%,transparent 61%)}
 #t{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--n);color:#fff;padding:10px 18px;border-radius:16px;max-width:90%;z-index:9}
 #snow span{position:fixed;top:-30px;color:#fff;opacity:.8;pointer-events:none;animation:f linear infinite;z-index:5}
@@ -94,16 +99,46 @@ const V={
 get quiz(){qi=sc=0;return qv()},
 home:'<div class="hero">'+card(PT,'Hallo, ich bin Peter!','Ich habe wunderschöne Musik geschrieben, zum Beispiel für Weihnachten. Wähle aus, was du entdecken möchtest.')+OV+'</div>'+
 `<nav class="menu"><button data-go="leben" style="--a:#d63a46;--b:#8c1420"><span>🎼</span><div>Tschaikowskys Leben<small>Wann und wo er gelebt hat</small></div></button>
-<button data-go="stuecke" style="--a:#2e8b5a;--b:#164d31"><span>🦢</span><div>Bekannteste Stücke<small>Mit Hörproben</small></div></button>
-<button data-go="suite" style="--a:#e8a93a;--b:#a06210"><span>🍬</span><div>Die Nussknackersuite<small>Tänze aus dem Ballett</small></div></button>
+<button data-go="stuecke" style="--a:#2e8b5a;--b:#164d31"><span>🦢</span><div>Bekannteste Stücke<small>Mit Hörproben und Geschichten</small></div></button>
+<button data-go="suite" style="--a:#e8a93a;--b:#a06210"><span>🍬</span><div>Die Nussknackersuite<small>Tippe dich durch die Tänze</small></div></button>
 <button data-go="quiz" style="--a:#7a4fc4;--b:#442a82"><span>🧩</span><div>Quiz<small>10 Fragen zum Ausprobieren</small></div></button></nav>`,
-get leben(){return card(PT,'Das ist Peter','Vollständiger Name: Pjotr Iljitsch Tschaikowsky. In Deutschland sagt man oft Peter. Geboren am 7. Mai 1840 in Wotkinsk in Russland. Gestorben am 6. November 1893 in Sankt Petersburg.',FIG)+tlv()},
-stuecke:card('🦢','Schwanensee','Schwanensee ist ein Ballett. Die Prinzessin Odette wurde in einen Schwan verzaubert. Prinz Siegfried verliebt sich in sie. Das Ballett wurde 1877 in Moskau zum ersten Mal gezeigt.',pl('schwanensee','Hörprobe Schwanensee'),'schwanensee')+
-card('👑','Dornröschen','Dornröschen ist ein Ballett nach dem bekannten Märchen. Die Prinzessin Aurora sticht sich an einer Spindel und schläft hundert Jahre lang. Ein Prinz weckt sie mit einem Kuss. Das Ballett wurde 1890 in Sankt Petersburg zum ersten Mal gezeigt.',pl('dornroeschen','Hörprobe Dornröschen'),'dornroeschen')+
-card('🥜','Der Nussknacker','Zu Weihnachten bekommt das Mädchen Clara einen Nussknacker geschenkt. In der Nacht wird er lebendig und kämpft gegen den Mäusekönig. Danach reisen beide ins Land der Süßigkeiten.',pl('nussknacker','Hörprobe Nussknacker'),'nussknacker'),
-suite:card('🎁','Was ist eine Suite?','Das Ballett Der Nussknacker ist sehr lang. Tschaikowsky suchte die schönsten Tänze aus. Daraus machte er die Nussknackersuite. Eine Suite ist eine Reihe von kurzen Musikstücken. Man hört sie im Konzert, auch ohne Tanz.','','suite')+
-card('🍬','Die acht Stücke','Kleine Ouvertüre, Marsch, Tanz der Zuckerfee, Russischer Tanz, Arabischer Tanz, Chinesischer Tanz, Tanz der Rohrflöten und Blumenwalzer.',pl('zuckerfee','Tanz der Zuckerfee')+pl('blumenwalzer','Blumenwalzer'),'zuckerfee')+
-card('🔔','Wusstest du das?','Im Tanz der Zuckerfee klingt ein besonderes Instrument: die Celesta. Sie klingt wie kleine Glöckchen. Tschaikowsky brachte sie extra aus Paris mit.','','celesta')};
+get leben(){return card(PT,'Das ist Peter','Vollständiger Name: Pjotr Iljitsch Tschaikowsky. In Deutschland sagt man oft Peter. Wähle unten ein Jahr aus, dann erfährst du mehr über sein Leben.',FIG)+tlv()},
+get stuecke(){return pv()},
+get suite(){return card('🎁','Was ist eine Suite?','Das Ballett Der Nussknacker ist sehr lang. Tschaikowsky suchte die schönsten Tänze aus. Daraus machte er die Nussknackersuite. Eine Suite ist eine Reihe von kurzen Musikstücken. Man hört sie im Konzert, auch ohne Tanz.','','suite')+'<p class="tp">Tippe auf ein Stück der Suite:</p><nav class="tiles t4">'+SU.map((a,i)=>`<button class="tile${i?'':' on'}" data-u="${i}"><span>${a[0]}</span>${a[1]}</button>`).join('')+'</nav><div id="sud">'+ue(0)+'</div>'+card('🔔','Wusstest du das?','Im Tanz der Zuckerfee klingt ein besonderes Instrument: die Celesta. Sie klingt wie kleine Glöckchen. Tschaikowsky brachte sie extra aus Paris mit.','','celesta')}};
+const PS=[
+['🦢','Schwanensee','Schwanensee ist ein Ballett. Die Prinzessin Odette wurde in einen Schwan verzaubert. Prinz Siegfried verliebt sich in sie. Das Ballett wurde 1877 in Moskau zum ersten Mal gezeigt.','schwanensee',[
+['🎂','Prinz Siegfried feiert seinen Geburtstag. Bald soll er heiraten.'],
+['🌙','In der Nacht geht er zu einem See. Dort verwandeln sich Schwäne in Mädchen.'],
+['👸','Die Schwanenkönigin ist die Prinzessin Odette. Ein böser Zauberer hat sie verzaubert. Siegfried verliebt sich in sie.'],
+['🦢','Siegfried will Odette befreien. Wie die Geschichte ausgeht, kannst du im Theater erleben.']]],
+['👑','Dornröschen','Dornröschen ist ein Ballett nach dem bekannten Märchen. Die Prinzessin Aurora sticht sich an einer Spindel und schläft hundert Jahre lang. Ein Prinz weckt sie mit einem Kuss. Das Ballett wurde 1890 in Sankt Petersburg zum ersten Mal gezeigt.','dornroeschen',[
+['👶','Prinzessin Aurora wird geboren. Beim Fest kommen gute Feen mit Geschenken.'],
+['😈','Die böse Fee Carabosse wurde nicht eingeladen. Aus Rache verflucht sie Aurora: Mit 16 Jahren soll sie sich an einer Spindel stechen.'],
+['😴','Die gute Fliederfee mildert den Fluch. Aurora und das ganze Schloss schlafen hundert Jahre lang.'],
+['✨','Nach hundert Jahren findet Prinz Désiré die schlafende Aurora. Sein Kuss weckt sie und das ganze Schloss auf.']]],
+['🥜','Der Nussknacker','Zu Weihnachten bekommt das Mädchen Clara einen Nussknacker geschenkt. In der Nacht wird er lebendig und kämpft gegen den Mäusekönig. Danach reisen beide ins Land der Süßigkeiten.','nussknacker',[
+['🎁','Am Weihnachtsabend bekommt Clara einen Nussknacker geschenkt.'],
+['🐭','In der Nacht wird der Nussknacker lebendig. Er kämpft gegen den Mäusekönig.'],
+['🤴','Der Nussknacker verwandelt sich in einen Prinzen. Er nimmt Clara mit auf eine Reise.'],
+['🍬','Im Land der Süßigkeiten tanzen die Zuckerfee und viele andere für Clara.']]]];
+const SU=[
+['🎻','Kleine Ouvertüre','Die Kleine Ouvertüre ist der Anfang der Suite. Sie klingt leicht und zart, denn die ganz tiefen Streichinstrumente spielen nicht mit.',''],
+['🎺','Marsch','Beim Marsch kommen die Kinder zur Weihnachtsfeier. Trompeten und Streicher klingen festlich.',''],
+['🍬','Tanz der Zuckerfee','Die Zuckerfee tanzt im Land der Süßigkeiten. Die Celesta klingt dabei wie kleine Glöckchen.','zuckerfee'],
+['🐻','Russischer Tanz','Der Russische Tanz heißt Trepak. Er ist schnell und wild und wird immer schneller.',''],
+['☕','Arabischer Tanz','Der Arabische Tanz steht für den Kaffee. Er klingt langsam, weich und geheimnisvoll.',''],
+['🍵','Chinesischer Tanz','Der Chinesische Tanz steht für den Tee. Er klingt hell und lustig, mit einer Flöte.',''],
+['🎶','Tanz der Rohrflöten','Beim Tanz der Rohrflöten spielen Flöten zusammen. Es klingt leicht und hüpfend.',''],
+['🌸','Blumenwalzer','Der Blumenwalzer ist ein Walzer, ein Tanz im Dreiertakt. Er ist das längste Stück der Suite.','blumenwalzer']];
+let pi=0,si=0;
+function pe(){const a=PS[pi];return card(a[0],a[1],a[2],pl(a[3],'Hörprobe '+a[1]),a[3])}
+function se(){const a=PS[pi][4],z=a[si];return card(z[0],'Szene '+(si+1)+' von '+a.length,z[1],(si?'<button class="pl" data-s="-1">◀ Davor</button>':'')+(si<a.length-1?'<button class="pl" data-s="1">Danach ▶</button>':''))}
+function pv(){pi=si=0;return '<nav class="tiles t3">'+PS.map((a,i)=>`<button class="tile${i?'':' on'}" data-p="${i}"><span>${a[0]}</span>${a[1]}</button>`).join('')+'</nav><div id="pst">'+pe()+'</div><div id="scn">'+se()+'</div>'}
+function tog(i){document.querySelectorAll('.tile').forEach((n,j)=>n.classList.toggle('on',j==i))}
+function selp(i){stopMusic();pi=i;si=0;tog(i);$('#pst').innerHTML=pe();$('#scn').innerHTML=se();tw()}
+function sels(d){si+=d;$('#scn').innerHTML=se();tw()}
+function ue(i){const a=SU[i];return card(a[0],a[1],a[2],a[3]?pl(a[3],'Hörprobe '+a[1]):'')}
+function selu(i){stopMusic();tog(i);$('#sud').innerHTML=ue(i);tw()}
 let ti=0;const TC=['#d63a46','#f2b84b','#2e8b5a','#3b82c4','#8a5cc4','#ee8b3a'];
 function ev(i){const a=L[i];return card(a[0],a[1]+': '+a[3],a[2],(i?'<button class="pl" data-d="-1">◀ Davor</button>':'')+(i<L.length-1?'<button class="pl" data-d="1">Danach ▶</button>':''),a[1])}
 function tlv(){ti=0;return '<nav class="tl" aria-label="Zeitstrahl">'+L.map((a,i)=>`<button class="nd${i?'':' on'}" data-t="${i}" style="--c:${TC[i]}"><span class="b"></span>${a[1]}</button>`).join('')+'</nav><div id="stg">'+ev(0)+'</div>'}
@@ -129,7 +164,7 @@ $('#fb').innerHTML='<p>'+(ok?'Richtig! 🎉':'Nicht ganz. Die richtige Antwort i
 function nxt(){qi++;$('#m').innerHTML=qv();scrollTo(0,0);tw()}
 function qend(){const m=sc>=9?'Wow, du bist ein Tschaikowsky-Profi!':sc>=6?'Super gemacht!':'Gut geübt! Lies noch einmal nach und versuche es erneut.';
 return card(sc>=6?'🏆':'⭐','Dein Ergebnis','Du hast '+sc+' von '+QS.length+' Fragen richtig. '+m,'<button class="pl" data-go="quiz">Nochmal spielen</button><button class="pl" data-go="home">Zur Startseite</button>')}
-function tw(){if(window.twemoji)document.querySelectorAll('header,footer,.pic,.menu span,.bow,#fb p').forEach(e=>twemoji.parse(e,{className:'emoji'}))}
+function tw(){if(window.twemoji)document.querySelectorAll('header,footer,.pic,.menu span,.tile span,.bow,#fb p').forEach(e=>twemoji.parse(e,{className:'emoji'}))}
 function go(v){stopMusic();$('#m').innerHTML=V[v];$('#back').hidden=$('#bk').hidden=v=='home';scrollTo(0,0);tw()}
 let cur,cb,tm;
 function setB(b,on){if(!b)return;b.dataset.l=b.dataset.l||b.textContent.slice(2);b.textContent=on?'❚❚ Pause':'▶ '+b.dataset.l;b.classList.toggle('on',!!on)}
@@ -145,6 +180,9 @@ if(b.dataset.go)go(b.dataset.go);
 else if(b.dataset.f)play(b.dataset.f,b);
 else if(b.dataset.o!==undefined)ans(b);
 else if(b.dataset.nx!==undefined)nxt();
+else if(b.dataset.p!==undefined)selp(+b.dataset.p);
+else if(b.dataset.s!==undefined)sels(+b.dataset.s);
+else if(b.dataset.u!==undefined)selu(+b.dataset.u);
 else if(b.dataset.t!==undefined)sel(+b.dataset.t);
 else if(b.dataset.d!==undefined)sel(ti+ +b.dataset.d);
 };
