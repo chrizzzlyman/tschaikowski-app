@@ -19,12 +19,11 @@ button:focus-visible{outline:4px solid var(--y);outline-offset:2px}
 .menu button{display:flex;align-items:center;gap:16px;border:0;border-radius:28px 12px 28px 12px;padding:16px 20px;color:#fff;text-align:left;font-size:1.35rem;font-weight:600;box-shadow:0 5px 0 rgba(0,0,0,.25)}
 .menu button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
 .menu span{font-size:2.6rem}.menu small{display:block;font-weight:400;font-size:.9rem;opacity:.9}
-.c{position:relative;display:flex;gap:16px;align-items:flex-start;background:linear-gradient(#fff,#fff6e2);border-radius:22px;border-left:10px solid var(--r);padding:16px 62px 16px 16px;margin:0 0 26px;box-shadow:0 5px 12px rgba(22,48,79,.2)}
+.c{position:relative;display:flex;gap:16px;align-items:flex-start;background:linear-gradient(#fff,#fff6e2);border-radius:22px;border-left:10px solid var(--r);padding:16px;margin:0 0 26px;box-shadow:0 5px 12px rgba(22,48,79,.2)}
 .c:nth-of-type(3n+2){border-color:var(--g)}.c:nth-of-type(3n){border-color:var(--y)}
 .pic{flex:none;width:96px;height:96px;border-radius:50%;background:radial-gradient(#fff,#d9efe2);border:5px solid var(--y);box-shadow:0 4px 8px rgba(0,0,0,.2);display:grid;place-items:center;font-size:3.2rem;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover}
 .pic svg{width:76px;height:86px}
 h3{margin:0 0 4px;font-size:1.4rem;color:var(--r)}p{margin:0 0 8px}
-.snd{position:absolute;right:10px;top:10px;width:46px;height:46px;border-radius:50%;border:3px solid var(--g);background:#fff;font-size:1.3rem}
 .pl{margin:4px 6px 4px 0;border:0;border-radius:20px;background:var(--g);color:#fff;padding:6px 16px}
 .pl.on{background:var(--r)}
 body::before{content:"";position:fixed;inset:auto 0 0 0;height:150px;z-index:-1;background:radial-gradient(ellipse 55% 100% at 15% 100%,#fff 62%,transparent 63%),radial-gradient(ellipse 60% 90% at 70% 100%,#f4f9fd 62%,transparent 63%),radial-gradient(ellipse 40% 70% at 100% 100%,#fff 62%,transparent 63%)}
@@ -48,16 +47,19 @@ body::before{content:"";position:fixed;inset:auto 0 0 0;height:150px;z-index:-1;
 .o.ok{background:#d7f2e1;border-color:var(--g)}.o.no{background:#fbd9dc;border-color:var(--r)}
 .o.ok::before{content:"✓ "}.o.no::before{content:"✗ "}
 img.emoji{height:1em;width:1em;vertical-align:-.12em;margin:0 .04em}
+#bk{position:relative;text-align:center;margin:-36px 0 18px}
+#bk button{border:0;border-radius:24px;background:var(--n);color:#fff;padding:10px 28px;box-shadow:0 4px 0 rgba(0,0,0,.25)}
+#bk button:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.25)}
 footer{padding:46px 0 16px;text-align:center;font-size:2.2rem;background:radial-gradient(ellipse 70% 100% at 30% 100%,#fff 60%,transparent 61%),radial-gradient(ellipse 60% 100% at 80% 100%,#f2f8fd 60%,transparent 61%)}
 #t{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--n);color:#fff;padding:10px 18px;border-radius:16px;max-width:90%;z-index:9}
 #snow span{position:fixed;top:-30px;color:#fff;opacity:.8;pointer-events:none;animation:f linear infinite;z-index:5}
 @keyframes f{to{transform:translateY(110vh) rotate(180deg)}}
 @media(prefers-reduced-motion:reduce){#snow{display:none}}
-@media(max-width:480px){.c{flex-direction:column;padding-right:16px;padding-top:60px}.pic{width:70px;height:70px}}
+@media(max-width:480px){.c{flex-direction:column}.pic{width:70px;height:70px}}
 </style></head><body>
 <div id="snow" aria-hidden="true"></div>
 <header><span class="moon">🌙</span><button id="back" data-go="home" hidden>← Zurück</button><h1>🎄 Tschaikowsky für Kinder 🎄</h1><div class="sub">Musik, Ballett und Weihnachtszauber</div></header>
-<main id="m"></main><footer>🌲🎄🌲⛄🌲🎄🌲<div style="font-size:.75rem;color:#4a6a86">Emoji-Grafiken: Twemoji, CC-BY 4.0</div></footer><div id="t" hidden></div>
+<main id="m"></main><div id="bk" hidden><button data-go="home">← Zurück zur Startseite</button></div><footer>🌲🎄🌲⛄🌲🎄🌲<div style="font-size:.75rem;color:#4a6a86">Emoji-Grafiken: Twemoji, CC-BY 4.0</div></footer><div id="t" hidden></div>
 <svg width="0" height="0" style="position:absolute"><symbol id="pt" viewBox="0 0 100 112">
 <path d="M12 112c0-26 16-36 38-36s38 10 38 36z" fill="#2f3a5a"/><path d="M50 86l-11-7v13zM50 86l11-7v13z" fill="#b8232f"/>
 <circle cx="50" cy="48" r="25" fill="#ffd9b8"/><path d="M25 48c-1-20 10-27 25-27s26 7 25 27c-4-9-10-13-25-13s-21 4-25 13z" fill="#e9e9f0"/>
@@ -68,8 +70,8 @@ footer{padding:46px 0 16px;text-align:center;font-size:2.2rem;background:radial-
 <path d="M24 30C26 12 44 4 58 8c10 3 16 12 18 22z" fill="#c4252f"/><rect x="22" y="26" width="56" height="9" rx="4.5" fill="#fff"/><circle cx="62" cy="7" r="6" fill="#fff"/></symbol></svg>
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <script>
-const S=speechSynthesis,$=s=>document.querySelector(s),PT='<svg><use href="#pt"/></svg>';
-const card=(e,t,x,b='',k)=>`<article class="c"><div class="pic">${k?`<img src="bilder/${k}.jpg" alt="" onerror="this.replaceWith('${e}');tw()">`:e}</div><div><h3>${t}</h3><p>${x}</p>${b}</div><button class="snd" title="Vorlesen" aria-label="Vorlesen">🔊</button></article>`;
+const $=s=>document.querySelector(s),PT='<svg><use href="#pt"/></svg>';
+const card=(e,t,x,b='',k)=>`<article class="c"><div class="pic">${k?`<img src="bilder/${k}.jpg" alt="" onerror="this.replaceWith('${e}');tw()">`:e}</div><div><h3>${t}</h3><p>${x}</p>${b}</div></article>`;
 const pl=(f,t)=>`<button class="pl" data-f="${f}">▶ ${t}</button>`;
 const L=[['🎹','1844','Peter ist erst 4 Jahre alt. Er hört gern Musik und möchte Klavier spielen lernen.'],
 ['🎓','1862','Peter ist jetzt 22 Jahre alt. In Sankt Petersburg beginnt er sein Musikstudium. Musik wird sein Beruf.'],
@@ -108,17 +110,16 @@ function ans(b){const q=QS[qi],ok=b.dataset.o==q[1];
 document.querySelectorAll('.o').forEach(x=>{x.disabled=true;if(x.dataset.o==q[1])x.classList.add('ok')});
 if(ok)sc++;else b.classList.add('no');
 $('#fb').innerHTML='<p>'+(ok?'Richtig! 🎉':'Nicht ganz. Die richtige Antwort ist grün. Du findest sie bei „'+q[3]+'“.')+'</p><button class="pl" data-nx>'+(qi+1<QS.length?'Weiter ▶':'Ergebnis ansehen ▶')+'</button>';tw()}
-function nxt(){S.cancel();qi++;$('#m').innerHTML=qv();scrollTo(0,0);tw()}
+function nxt(){qi++;$('#m').innerHTML=qv();scrollTo(0,0);tw()}
 function qend(){const m=sc>=9?'Wow, du bist ein Tschaikowsky-Profi!':sc>=6?'Super gemacht!':'Gut geübt! Lies noch einmal nach und versuche es erneut.';
 return card(sc>=6?'🏆':'⭐','Dein Ergebnis','Du hast '+sc+' von '+QS.length+' Fragen richtig. '+m,'<button class="pl" data-go="quiz">Nochmal spielen</button><button class="pl" data-go="home">Zur Startseite</button>')}
-function tw(){if(window.twemoji)document.querySelectorAll('header,footer,.pic,.menu span,.snd,.bow,#fb p').forEach(e=>twemoji.parse(e,{className:'emoji'}))}
-function go(v){S.cancel();stopMusic();$('#m').innerHTML=V[v];$('#back').hidden=v=='home';scrollTo(0,0);tw()}
-function say(t){if(S.speaking){S.cancel();return}stopMusic();const u=new SpeechSynthesisUtterance(t.replace(/[\u{1F000}-\u{1FFFF}\u2600-\u27BF▶]/gu,''));u.lang='de-DE';u.rate=.85;S.speak(u)}
+function tw(){if(window.twemoji)document.querySelectorAll('header,footer,.pic,.menu span,.bow,#fb p').forEach(e=>twemoji.parse(e,{className:'emoji'}))}
+function go(v){stopMusic();$('#m').innerHTML=V[v];$('#back').hidden=$('#bk').hidden=v=='home';scrollTo(0,0);tw()}
 let cur,cb,tm;
 function setB(b,on){if(!b)return;b.dataset.l=b.dataset.l||b.textContent.slice(2);b.textContent=on?'❚❚ Pause':'▶ '+b.dataset.l;b.classList.toggle('on',!!on)}
 function stopMusic(){if(cur){cur.pause();setB(cb,0)}}
 function toast(x){const t=$('#t');t.textContent=x;t.hidden=false;clearTimeout(tm);tm=setTimeout(()=>t.hidden=true,4000)}
-function play(f,b){S.cancel();
+function play(f,b){
 if(cur&&cb===b){if(cur.paused){cur.play();setB(b,1)}else stopMusic();return}
 stopMusic();const a=cur=new Audio('audio/'+f+'.mp3');cb=b;
 a.onerror=()=>{cur=null;setB(b,0);toast('Die Musikdatei fehlt noch. Bitte einen Erwachsenen um Hilfe.')};
@@ -128,7 +129,7 @@ if(b.dataset.go)go(b.dataset.go);
 else if(b.dataset.f)play(b.dataset.f,b);
 else if(b.dataset.o!==undefined)ans(b);
 else if(b.dataset.nx!==undefined)nxt();
-else if(b.classList.contains('snd')){const c=b.closest('.c');say(c.querySelector('h3').textContent+'. '+c.querySelector('p').textContent)}};
+};
 for(let i=0;i<22;i++){const s=document.createElement('span');s.textContent=Math.random()<.3?'♪':'❄';s.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*16}px;animation-duration:${8+Math.random()*10}s;animation-delay:-${Math.random()*14}s`;$('#snow').append(s)}
 go('home');
 </script></body></html>
